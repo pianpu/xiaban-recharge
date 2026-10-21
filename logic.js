@@ -1,6 +1,6 @@
 (function(root){
   'use strict';
-  const defaults={start:'09:00',end:'18:00',lunchEnabled:true,lunchStart:'12:00',lunchEnd:'13:30',monthly:10000,days:21.75};
+  const defaults={start:'08:40',end:'17:40',lunchEnabled:true,lunchStart:'12:00',lunchEnd:'13:30',monthly:10000,days:21.75};
   const timeMinutes=t=>{if(typeof t!=='string'||!/^\d{2}:\d{2}$/.test(t))throw Error('请填写有效时间。');const [h,m]=t.split(':').map(Number);if(h>23||m>59)throw Error('时间格式有误。');return h*60+m;};
   function validate(config){
     const c={...defaults,...config};const start=timeMinutes(c.start),end=timeMinutes(c.end);if(start===end)throw Error('上下班时间不能相同。');
@@ -12,10 +12,13 @@
     return c;
   }
   function restoreConfig(saved={}){
-    const c=validate(saved.config||{});
+    let c=validate(saved.config||{});
     // Upgrade the previous default without discarding other saved preferences.
     if((saved.defaultsVersion||1)<2&&c.lunchStart==='12:00'&&c.lunchEnd==='13:00'){
-      try{return validate({...c,lunchEnd:'13:30'});}catch{return c;}
+      try{c=validate({...c,lunchEnd:'13:30'});}catch{}
+    }
+    if((saved.defaultsVersion||1)<3&&c.start==='09:00'&&c.end==='18:00'){
+      try{c=validate({...c,start:'08:40',end:'17:40'});}catch{}
     }
     return c;
   }

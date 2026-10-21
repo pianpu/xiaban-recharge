@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id),key='recharge-station-v1';let config={..
 try{const saved=JSON.parse(localStorage.getItem(key)||'null');if(saved){config=RechargeTime.restoreConfig(saved);hidden=!!saved.hidden;}}catch{try{localStorage.removeItem(key);}catch{storageAvailable=false;}}
 const money=n=>n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
 let toastTimer;function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200);}
-function save(){try{localStorage.setItem(key,JSON.stringify({config,hidden,defaultsVersion:2}));storageAvailable=true;return true;}catch{storageAvailable=false;return false;}}
+function save(){try{localStorage.setItem(key,JSON.stringify({config,hidden,defaultsVersion:3}));storageAvailable=true;return true;}catch{storageAvailable=false;return false;}}
 function render(){const now=new Date(),s=RechargeTime.calculate(config,now),sec=s.remaining;
 $('hours').textContent=String(Math.floor(sec/3600)).padStart(2,'0');$('minutes').textContent=String(Math.floor(sec%3600/60)).padStart(2,'0');$('seconds').textContent=String(sec%60).padStart(2,'0');
 $('countdown-title').textContent=s.status==='done'?'今日已到站，去享受生活吧':'距离今日下班还有';
