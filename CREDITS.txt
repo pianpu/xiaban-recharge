@@ -1,0 +1,13 @@
+Audio sources
+
+1. Gymnopédie No. 1
+Composer: Erik Satie. Performance: Teknopazzo.
+Source: https://commons.wikimedia.org/wiki/File:Gymnopedie_No._1..ogg
+Downloaded Commons MP3 transcode. Playback volume reduced; looping enabled.
+License: CC0 1.0 Universal https://creativecommons.org/publicdomain/zero/1.0/
+
+2. Small stream in the woods, Few birds
+Creator: fran_marenco.
+Source: https://freesound.org/people/fran_marenco/sounds/796191/
+Downloaded publicly available HQ MP3 preview. Playback volume reduced; looping enabled.
+License: CC0 1.0 Universal https://creativecommons.org/publicdomain/zero/1.0/

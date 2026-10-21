@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#edf3ed">
+  <meta name="description" content="今天也辛苦啦。在森林小站看看下班倒计时，收下今天的努力，再和水豚阿团一起充充电。">
+  <title>下班回血站 · 下一站，自由时间</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23d9e6cf'/%3E%3Cellipse cx='32' cy='36' rx='23' ry='18' fill='%23b58b61'/%3E%3Ccircle cx='23' cy='33' r='2'/%3E%3Ccircle cx='42' cy='33' r='2'/%3E%3Ccircle cx='32' cy='17' r='8' fill='%23e7a15d'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css"><script defer src="logic.js"></script><script defer src="audio.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C9 2 3 6 5 13c2 7 13 6 15-9Z"/><path d="M4 21 16 9M9 16v-5m4 1h4"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3-1 3-3 1-2 4 2 2v3l4 3 3-1 3 1 4-3v-3l2-2-2-4-3-1-1-3Z"/><circle cx="12" cy="11" r="3"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4ZM15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20S2 14 2 8a5 5 0 0 1 10-1A5 5 0 0 1 22 8c0 6-10 12-10 12Z"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24"><path d="M12 7C1 3 1 21 9 21h6c8 0 8-18-3-14ZM12 7V3m0 1c1-3 6-3 7-2-1 3-5 4-7 2Z"/></symbol>
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 5 4-2 6H9l-2-6Zm0 0V3m5 8 4-2m-6 8 2 3m-8-3-2 3m0-9L3 9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19 9a8 8 0 1 0 0 8M19 3v6h-6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  <symbol id="i-train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 11h14M8 22l2-3m6 3-2-3m-5-8h.01M15 15h.01M12 3v8"/></symbol>
+</defs></svg>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="下班回血站首页"><span class="brand-mark"><svg><use href="#i-leaf"/></svg></span><span>下班回血站<small>A LITTLE REST, A LITTLE JOY</small></span></a>
+    <div class="header-actions"><button id="sound-btn" class="quiet-btn" aria-pressed="false" aria-label="开启轻音乐"><svg><use href="#i-sound"/></svg><span id="sound-label">轻音乐准备中</span><span class="switch-dot"></span></button><button class="settings-btn" data-settings><svg><use href="#i-settings"/></svg><span>我的作息</span></button></div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><div class="eyebrow"><span></span> 打工人的能量补给小站</div><h1>今天也辛苦啦<span class="sun-doodle">☀</span><br>下一站，<em>自己的时间。</em></h1><p>把忙碌暂时放下。你的小小快乐，正在到站。</p></div>
+      <div class="date-stamp"><span id="today-date">10 月 21 日 · 星期三</span><strong id="greeting">慢慢来，也来得及。</strong><span class="stamp-line">今日宜：好好照顾自己 <svg><use href="#i-leaf"/></svg></span></div>
+    </section>
+    <div class="dashboard">
+      <section class="forest-card" aria-labelledby="countdown-title">
+        <div class="card-top"><span class="live-pill"><span></span><span id="work-state">正在驶向自由时间</span></span><button class="text-btn" data-settings>设置下班时间 <svg><use href="#i-arrow"/></svg></button></div>
+        <div class="countdown-head"><h2 id="countdown-title">距离今日下班还有</h2><span id="end-label">终点站 18:00</span></div>
+        <div class="countdown" aria-label="下班倒计时"><div><strong id="hours">00</strong><span>小时</span></div><b>:</b><div><strong id="minutes">00</strong><span>分钟</span></div><b>:</b><div><strong id="seconds">00</strong><span>秒</span></div></div>
+        <div class="journey"><div class="journey-track"><div id="journey-fill"></div><span class="train-marker" id="train-marker"><svg><use href="#i-train"/></svg></span><i></i></div><div class="journey-labels"><span id="start-label">09:00 出发</span><span id="journey-caption">今天的努力，都算数</span><span>自由时间</span></div></div>
+        <div class="scene-wrap">
+          <div class="pet-bubble" id="pet-bubble" role="status">别急，阿团陪你慢慢等下班。</div>
+          <button class="scene-touch" id="pet-touch" aria-label="摸摸水豚阿团">
+          <svg class="forest-scene" viewBox="0 0 760 340" role="img" aria-label="戴着橘子的水豚阿团坐在森林车站的长椅上，身旁有小池塘和植物">
+            <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#e4ecdc"/><stop offset="1" stop-color="#f4f3dc"/></linearGradient><linearGradient id="pond" x2="0" y2="1"><stop stop-color="#b9d5c5"/><stop offset="1" stop-color="#d4e5d3"/></linearGradient><linearGradient id="body" x2="1" y2="1"><stop stop-color="#c29a70"/><stop offset="1" stop-color="#ac825b"/></linearGradient><pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#456a43" opacity=".09"/></pattern></defs>
+            <path d="M0 24Q180-5 380 18T760 18V340H0Z" fill="url(#sky)"/>
+            <circle cx="593" cy="77" r="40" fill="#f4daa2" opacity=".7"/>
+            <g fill="#fffdf1" opacity=".8" class="cloud"><path d="M60 76c-8-20 22-31 31-15 8-28 42-22 44 0 22-8 34 18 18 21H60Z"/><path d="M449 43c-5-15 13-24 21-12 11-21 34-12 34 3 21-7 27 13 17 15h-72Z"/></g>
+            <path d="M0 161Q95 68 201 153T390 146T576 146T760 104V299H0Z" fill="#ccdac0"/><path d="M0 208Q89 123 214 202T433 186T628 185T760 172V340H0Z" fill="#afc6a6"/>
+            <g fill="#8fac8c"><path d="M18 197 51 74l33 123h-17l23 40H13l23-40Z"/><path d="m655 203 35-139 36 139h-18l30 46h-96l29-46Z"/><path d="m591 198 25-104 28 104h-14l21 36h-69l21-36Z"/></g>
+            <g stroke="#789578" stroke-width="4" stroke-linecap="round"><path d="M50 204v72M690 208v69M615 207v48"/></g>
+            <path d="M0 277q124-47 273-15t246-3q156-38 241-3v84H0Z" fill="#e3e7ca"/>
+            <path d="M0 303q109-37 237-7t206 10q158-40 317-16v50H0Z" fill="#d7dfbd"/>
+            <path d="M465 301c42-37 133-44 193-17s116 35 102 56H428c-8-17 6-25 37-39Z" fill="url(#pond)"/>
+            <g fill="none" stroke="#e6efdb" stroke-width="3" stroke-linecap="round"><path d="M534 310h51m-21 15h73m20-20h39m-51 27h48"/></g>
+            <g fill="#e9e6d0"><ellipse cx="278" cy="301" rx="31" ry="9"/><ellipse cx="343" cy="311" rx="24" ry="8"/><ellipse cx="400" cy="320" rx="25" ry="8"/></g>
+            <g id="station"><path d="M176 105h379v16H176Z" fill="#859a71"/><path d="M166 108 204 71h317l45 37Z" fill="#698369"/><path d="m181 105 30-25h304l35 25" fill="none" stroke="#98ac81" stroke-width="3"/>
+            <path d="M196 118h12v158h-12Zm320 0h12v158h-12Z" fill="#ab9d78"/><path d="M209 126h305v5H209Z" fill="#d2c69e"/>
+            <path d="M303 106v19m124-19v19" stroke="#7d8065" stroke-width="3"/><rect x="290" y="122" width="150" height="39" rx="5" fill="#f7f1d6" stroke="#b7b18a" stroke-width="2"/><text x="365" y="147" text-anchor="middle" fill="#597057" font-size="15" font-family="KaiTi,serif" letter-spacing="2">下一站 · 自由</text>
+            <g fill="#ad8d63"><rect x="249" y="207" width="229" height="13" rx="4"/><rect x="249" y="225" width="229" height="13" rx="4"/><rect x="240" y="246" width="246" height="13" rx="4"/><rect x="259" y="258" width="10" height="27" rx="3"/><rect x="457" y="258" width="10" height="27" rx="3"/></g><path d="M259 214h210m-210 18h210m-220 20h227" stroke="#c5a47a" stroke-width="2"/>
+            </g>
+            <ellipse cx="367" cy="280" rx="67" ry="11" fill="#7e9062" opacity=".17"/>
+            <g id="capy" class="capy"><path d="M313 256c-16-30-2-69 30-73 23-3 47 18 48 43l7 35Z" fill="url(#body)"/><path d="M384 260c16 7 25-4 20-13-3-6-10-8-18-4" fill="#ad8259"/><path d="M319 257c-8 4-9 17 2 20h21c8-2 7-12-1-15m26-4c-8 5-7 16 3 18h22c9-3 7-13-1-15" fill="#9e7653"/>
+            <path d="M314 204c-4-25 9-46 35-48l41 1c24 1 34 20 29 39l-7 20c-7 20-33 24-56 16-24-1-39-10-42-28Z" fill="#c5a079"/>
+            <ellipse cx="333" cy="161" rx="10" ry="13" fill="#b58d63" transform="rotate(-25 333 161)"/><ellipse cx="333" cy="162" rx="5" ry="7" fill="#99704d"/>
+            <path d="M367 197c8-6 35-5 45 0 12 8 10 24-1 29-12 6-40 4-47-3-7-7-6-20 3-26Z" fill="#d2af87"/>
+            <g id="pet-eyes" stroke="#594f3c" stroke-width="3.5" stroke-linecap="round"><path d="M345 190h1m46 0h1"/></g><path d="m399 205 3 1m-26 0 3-1" stroke="#6b5c44" stroke-width="3" stroke-linecap="round"/><path d="M380 217q8 5 14-1" fill="none" stroke="#806749" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="339" cy="207" rx="8" ry="4" fill="#d9a58c" opacity=".7"/><path d="M329 237q7 14 19 8" fill="none" stroke="#a17b55" stroke-width="5" stroke-linecap="round"/>
+            <g id="orange"><circle cx="368" cy="150" r="15" fill="#e8a358"/><path d="M364 137q3-13 16-8-3 11-16 8" fill="#738d55"/><path d="m369 140-2-5" stroke="#7b8050" stroke-width="2"/><path d="m359 146-1 4" stroke="#f6c98a" stroke-width="3" stroke-linecap="round"/></g></g>
+            <g class="pet-hearts" fill="#d58d7c"><path d="M306 177c-12-9-5-17 1-11 7-7 15 2-1 11Z"/><path d="M428 154c-12-9-5-17 1-11 7-7 15 2-1 11Z"/><path d="M393 119c-10-7-4-14 1-9 6-6 12 2-1 9Z"/></g>
+            <g transform="translate(137 238)"><path d="M-11 12H18l-5 35H-6Z" fill="#bb9271"/><path d="M3 16V-21" stroke="#71865e" stroke-width="3"/><g fill="#8ca777"><ellipse cx="-7" cy="-8" rx="7" ry="17" transform="rotate(-38 -7 -8)"/><ellipse cx="14" cy="-15" rx="7" ry="17" transform="rotate(38 14 -15)"/><ellipse cx="2" cy="-24" rx="6" ry="16"/></g></g>
+            <g transform="translate(555 251)"><path d="M0 31V-5m0 28 13-17m-13 8L-12 0" stroke="#72875f" stroke-width="2"/><g fill="#edcd8e"><circle cx="-12" cy="-3" r="5"/><circle cx="14" cy="3" r="5"/><circle cy="-8" r="5"/></g></g>
+            <g stroke="#92a777" stroke-width="2" stroke-linecap="round"><path d="m70 295-4-9m5 9 6-12m546-12-3-9m3 9 6-10m-468 47-4-10m5 10 4-12"/></g>
+            <path d="M0 0h760v340H0Z" fill="url(#grain)" pointer-events="none"/>
+          </svg></button>
+          <span class="scene-caption">点点阿团，收一份好心情 <span>↗</span></span>
+        </div>
+        <div class="pet-toolbar"><div class="pet-info"><span class="pet-avatar">●</span><div><strong>水豚站长 · 阿团</strong><span id="pet-status">能量满满，陪你到站</span></div></div><div class="pet-actions"><button data-pet="pat"><svg><use href="#i-heart"/></svg>摸摸</button><button data-pet="feed"><svg><use href="#i-food"/></svg>喂食</button><button data-pet="play"><svg><use href="#i-ball"/></svg>玩耍</button></div></div>
+      </section>
+      <aside class="side-column">
+        <section class="salary-card" aria-labelledby="salary-title"><div class="section-label"><h2 id="salary-title">今天的努力，有在到账</h2><button id="privacy-btn" class="icon-btn" aria-label="隐藏工资金额" aria-pressed="false"><svg><use href="#i-eye"/></svg></button></div><div class="salary-subtitle">今日已赚 · 实时估算</div><div class="salary-amount"><span>¥</span><strong id="earned">0.00</strong><span class="growing-leaf">↗</span></div><p id="salary-note">每一秒，都是生活的小底气。</p><div class="salary-progress" role="progressbar" aria-label="今日工资进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="salary-fill"></div></div><div class="salary-meta"><span>今日目标 <b id="daily-pay">¥459.77</b></span><span id="salary-percent">0%</span></div><div class="salary-bottom"><span><i></i> 按有效工时计算</span><button class="text-btn" data-settings>设置薪资 <svg><use href="#i-arrow"/></svg></button></div></section>
+        <section class="breathing-card" aria-labelledby="breath-title"><div class="breath-heading"><span class="tiny-label">给自己 1 分钟</span><span class="four-point">✧</span></div><h2 id="breath-title">世界很快，你可以慢一点。</h2><p id="breath-description">跟着光圈呼吸，把疲惫轻轻放下。</p><div class="breath-visual" id="breath-visual"><div class="breath-ring outer"></div><div class="breath-ring inner"></div><div class="breath-core"><svg><use href="#i-leaf"/></svg><span id="breath-phase">呼 — 吸</span></div></div><div class="charge-sound"><svg><use href="#i-sound"/></svg><span id="charge-sound-label" role="status">充电时 · 林间溪流与鸟鸣</span></div><button id="breath-btn" class="primary-btn">开始充电 <svg><use href="#i-arrow"/></svg></button><span class="breath-footnote" id="breath-footnote">不用赶进度，这一分钟只属于你</span></section>
+      </aside>
+    </div>
+    <section class="note-strip"><span class="note-flower">✿</span><div><span class="tiny-label">阿团的今日便签</span><p id="quote">你不需要时刻满电，慢慢来就好。</p></div><button id="quote-btn" class="icon-btn" aria-label="换一句今日便签"><svg><use href="#i-refresh"/></svg></button></section>
+  </main>
+  <footer><span><svg><use href="#i-leaf"/></svg> 在这里，休息也是一件正经事。</span><span>你的作息与薪资仅保存在本机浏览器</span></footer>
+  <details class="audio-credits"><summary>声音素材与鸣谢</summary><p>钢琴：Erik Satie《Gymnopédie No. 1》，演奏 Teknopazzo，<a href="https://commons.wikimedia.org/wiki/File:Gymnopedie_No._1..ogg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>。自然声：fran_marenco《Small stream in the woods, Few birds》，<a href="https://freesound.org/people/fran_marenco/sounds/796191/" target="_blank" rel="noopener noreferrer">Freesound</a>。均采用 <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0</a>；播放时调整音量并循环。</p></details>
+</div>
+<audio id="bg-music" src="piano.mp3" preload="auto" loop playsinline></audio>
+<audio id="forest-audio" src="forest-stream.mp3" preload="metadata" loop playsinline></audio>
+<dialog id="settings-dialog"><form id="settings-form"><div class="dialog-header"><div><span class="tiny-label">为自己的时间，设一个终点</span><h2>我的作息与薪资</h2></div><button type="button" id="close-settings" class="icon-btn" aria-label="关闭设置"><svg><use href="#i-close"/></svg></button></div><p class="form-intro">设置一次，阿团就会记得。所有金额均为税前估算。</p><div class="form-grid"><label>上班时间<input name="start" type="time" required value="09:00"></label><label>下班时间<input name="end" type="time" required value="18:00"></label></div><label class="checkbox-label"><input name="lunchEnabled" type="checkbox" checked>扣除午休时间</label><div class="form-grid" id="lunch-fields"><label>午休开始<input name="lunchStart" type="time" value="12:00" required></label><label>午休结束<input name="lunchEnd" type="time" value="13:30" required></label></div><div class="form-grid"><label>税前月薪（元）<input name="monthly" type="number" min="0" max="100000000" step="0.01" value="10000" required inputmode="decimal"></label><label>每月计薪天数<input name="days" type="number" min="1" max="31" step="0.01" value="21.75" required inputmode="decimal"></label></div><p class="form-hint">支持跨零点班次。今日目标 = 月薪 ÷ 计薪天数；午休不计入有效工时。</p><p id="form-error" class="form-error" role="alert"></p><button class="primary-btn save-btn" type="submit">保存，向下班出发 <svg><use href="#i-arrow"/></svg></button></form></dialog>
+<div id="toast" class="toast" role="status"></div>
+</body></html>
